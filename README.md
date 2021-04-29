@@ -20,8 +20,8 @@ GameMoreLess
 ## Зависимости
 
 Для работы данного ПО потребуется язык программирования JAVA и библиотека JavaFX.
-UML диаграмма представлена на скриншоте ниже.
-![](https://github.com/Mortuumm/GameMoreLess/blob/main/cfAbHJ9OX_4.jpg)
+UML диаграмма представлена на скриншоте.
+![](https://github.com/Mortuumm/GameMoreLess/blob/main/nfYGsz9AdIo.jpg)
   
 ## Конфигурации
 
