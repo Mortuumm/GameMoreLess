@@ -18,7 +18,7 @@ GameMoreLess
 ![](https://github.com/Mortuumm/GameMoreLess/blob/main/cfAbHJ9OX_4.jpg)
 
 Инструкция:
-![](https://github.com/Mortuumm/GameMoreLess/blob/main/MB3-aFUvj-k.jpg)
+![](https://github.com/Mortuumm/GameMoreLess/blob/main/V2EI5nBZhAw.jpg)
 
 ## Зависимости
 
