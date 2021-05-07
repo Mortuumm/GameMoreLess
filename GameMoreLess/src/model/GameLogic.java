@@ -11,25 +11,25 @@ import java.util.Optional;
 
 public class GameLogic {
     Controller cntr = new Controller();
-    public WebView videos = cntr.videos;
-    public Circle goodCircle = cntr.goodCircle;
-    public Circle badCircle = cntr.badCircle;
-    public Text plusBall = cntr.plusBall;
-    public Text minusBall = cntr.minusBall;
-    public Handler chain = cntr.chain;
-    public Label rightAnswers = cntr.rightAnswers;
-    public Button number1 = cntr.number1;
-    public Button number2 = cntr.number2;
-    public Label falseAnswers = cntr.falseAnswers;
-    public static int SUCCESS = 1;
+    public WebView videos = cntr.videos;// а это не View
+    public Circle goodCircle = cntr.goodCircle;// а это не View
+    public Circle badCircle = cntr.badCircle;// а это не View
+    public Text plusBall = cntr.plusBall;// а это не View
+    public Text minusBall = cntr.minusBall;// а это не View
+    public Handler chain = cntr.chain;// а это не View
+    public Label rightAnswers = cntr.rightAnswers;// а это не View
+    public Button number1 = cntr.number1;// а это не View
+    public Button number2 = cntr.number2;// а это не View
+    public Label falseAnswers = cntr.falseAnswers;// а это не View
+    public static int SUCCESS = 1;// эти значения как раз надо возвращать для обраблтке в Контроллере по результатам проверки
     public static int LOSS = 3;
-    public int a = (int) ( 5 + Math.random() * 40 );
-    public int b = (int) ( 5 + Math.random() * 40 );
+    public int a = (int) ( 5 + Math.random() * 40 );//в метод
+    public int b = (int) ( 5 + Math.random() * 40 );//в метод
     public int c = 0;
-    public String convert = Integer.toBinaryString(a);
-    public String convert1 = Integer.toBinaryString(b);
-    public int convertINt = Integer.parseInt(convert);
-    public int convertINt1 = Integer.parseInt(convert1);
+    public String convert = Integer.toBinaryString(a);// а это не View
+    public String convert1 = Integer.toBinaryString(b);// а это не View
+    public int convertINt = Integer.parseInt(convert);// а это не View
+    public int convertINt1 = Integer.parseInt(convert1);// а это не View
     public int count = 0;
     public int count1 = 0;
     public void initial(){
