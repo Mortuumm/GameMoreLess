@@ -5,7 +5,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 
 import java.util.Optional;
-import static sample.Controller.LOSS;
+import static model.GameLogic.LOSS;
 
 
 public class NegativeHandler extends Handler{

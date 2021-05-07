@@ -3,10 +3,11 @@ package model;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.web.WebView;
 
 import java.util.Optional;
 
-import static sample.Controller.SUCCESS;
+import static model.GameLogic.SUCCESS;
 
 
 public class PositiveHandler extends Handler{
