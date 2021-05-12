@@ -48,15 +48,7 @@ public class Controller {
     public int count1 = 0;
 
     public void initialize(){
-        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-        alert1.setTitle("Инструкция!");
-        alert1.setHeaderText("Игровые возможности направлены на закрепление навыка различать двоичные записи чисел\n" +
-                "Геймплей: на экране появляются двоичные цифры, необходимо нажать W, если появившаяся цифра больше предыдущей или S - если меньше");
-        ButtonType replay = new ButtonType("Начать игру", ButtonBar.ButtonData.OK_DONE);
-        alert1.getButtonTypes().clear();
-        alert1.getButtonTypes().addAll(replay);
-        Optional<ButtonType> option = alert1.showAndWait();
-        option.get();
+        gameLogic.alarm();
         number1.setText(convert);
         number2.setText(convert1);
         rightAnswers.setText(String.valueOf(count));
@@ -66,48 +58,47 @@ public class Controller {
 
     public void handle(KeyEvent event){
         if(event.getCode() == KeyCode.W){
-            if(convertINt1 >= convertINt ){
-                count++;
-                rightAnswers.setText(String.valueOf(count));
-                goodCircle.setVisible(true);
-                plusBall.setVisible(true);
-                javax.swing.Timer timer = new javax.swing.Timer(1000/*Time in millis*/,e->
-                {
-                    Platform.runLater(()->
-                    {
-                        goodCircle.setVisible(false);
-                        plusBall.setVisible(false);
-                    }/*Runnable*/);
-                }/*ActionListener*/);
-                timer.setRepeats(false);
-                timer.start();
-            }
-            else {
-                count1++;
-                falseAnswers.setText(String.valueOf(count1));
-                badCircle.setVisible(true);
-                minusBall.setVisible(true);
-                javax.swing.Timer timer = new javax.swing.Timer(1000/*Time in millis*/,e->
-                {
-                    Platform.runLater(()->
-                    {
-                        badCircle.setVisible(false);
-                        minusBall.setVisible(false);
-                    }/*Runnable*/);
-                }/*ActionListener*/);
-                timer.setRepeats(false);
-                timer.start();
-            }
-            convertINt = convertINt1;
-            number1.setText(String.valueOf(convertINt));
-            c = gameLogic.randomer();
-            convert = Integer.toBinaryString(c);
-            convertINt1 = Integer.parseInt(convert);
-            number2.setText(String.valueOf(convertINt1));
-            //number2.setVisible(false);
-            //number1.setVisible(false);
-            number2.setEffect(new GaussianBlur(500));
-           number1.setEffect(new GaussianBlur(500));
+                    if(gameLogic.convertINt1 >= gameLogic.convertINt ){
+                        rightAnswers.setText(String.valueOf(gameLogic.getCount()));
+                        goodCircle.setVisible(true);
+                        plusBall.setVisible(true);
+                        javax.swing.Timer timer = new javax.swing.Timer(1000/*Time in millis*/,e->
+                        {
+                            Platform.runLater(()->
+                            {
+                                goodCircle.setVisible(false);
+                                plusBall.setVisible(false);
+                            }/*Runnable*/);
+                        }/*ActionListener*/);
+                        timer.setRepeats(false);
+                        timer.start();
+                    }
+                    else {
+                        gameLogic.getCount1();
+                        falseAnswers.setText(String.valueOf(gameLogic.getCount1()));
+                        badCircle.setVisible(true);
+                        minusBall.setVisible(true);
+                        javax.swing.Timer timer = new javax.swing.Timer(1000/*Time in millis*/,e->
+                        {
+                            Platform.runLater(()->
+                            {
+                                badCircle.setVisible(false);
+                                minusBall.setVisible(false);
+                            }/*Runnable*/);
+                        }/*ActionListener*/);
+                        timer.setRepeats(false);
+                        timer.start();
+                    }
+                    convertINt = convertINt1;
+                    number1.setText(String.valueOf(convertINt));
+                    c = gameLogic.randomer();
+                    convert = Integer.toBinaryString(c);
+                    convertINt1 = Integer.parseInt(convert);
+                    number2.setText(String.valueOf(convertINt1));
+                    //number2.setVisible(false);
+                    //number1.setVisible(false);
+                    number2.setEffect(new GaussianBlur(500));
+                    number1.setEffect(new GaussianBlur(500));
             javax.swing.Timer timer1 = new javax.swing.Timer(1000/*Time in millis*/,e->
             {
                 Platform.runLater(()->
@@ -121,10 +112,7 @@ public class Controller {
             timer1.setRepeats(false);
             timer1.start();
             if(count == 10 ){
-                Platform.runLater(()->
-                {
-                    videos.getEngine().load("https://www.youtube.com/watch?v=ptbrmoSN9IM");
-                }/*Runnable*/);
+                videos.getEngine().load("https://www.youtube.com/watch?v=ptbrmoSN9IM");
                 chain.process(SUCCESS);
                 count = 0;
                 count1 = 0;
@@ -202,7 +190,6 @@ public class Controller {
                 falseAnswers.setText(String.valueOf(count1));
             }
             if(count1 == 6 ){
-                   // videos.getEngine().load("https://youtu.be/0kLTU4w1zRg");
                 chain.process(LOSS);
                 count = 0;
                 count1 = 0;
