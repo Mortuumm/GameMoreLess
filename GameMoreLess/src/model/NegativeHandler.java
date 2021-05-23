@@ -7,7 +7,6 @@ import javafx.scene.control.ButtonType;
 import java.util.Optional;
 import static sample.Controller.LOSS;
 
-
 public class NegativeHandler extends Handler{
 
     public NegativeHandler(Handler processor) {
