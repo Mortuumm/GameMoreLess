@@ -28,6 +28,9 @@ public class Controller {
     public Label falseAnswers;
     public static int SUCCESS = 1;
     public static int LOSS = 3;
+    public int count ;
+    public int count1;
+    public int chainNum = 0;
     public void alarm (){
         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
         alert1.setTitle("Инструкция!");
@@ -39,21 +42,33 @@ public class Controller {
         Optional<ButtonType> option = alert1.showAndWait();
         option.get();
     }
+
     public void initialize(){
         alarm();
         number1.setText(gameLogic.getConvert());
         number2.setText(gameLogic.getConvert1());
-        rightAnswers.setText(String.valueOf(gameLogic.getCount()));
-        falseAnswers.setText(String.valueOf(gameLogic.getCount()));
+        rightAnswers.setText(String.valueOf(count));
+        falseAnswers.setText(String.valueOf(count1));
         chain = new PositiveHandler(new NegativeHandler(null));
     }
+
     public void countGenerat(){
-        gameLogic.nullCounter();
-        rightAnswers.setText(String.valueOf(gameLogic.getCount()));
-        falseAnswers.setText(String.valueOf(gameLogic.getCount1()));
+        count = 0;
+        count1 = 0;
+        rightAnswers.setText(String.valueOf(count));
+        falseAnswers.setText(String.valueOf(count1));
     }
+
+    public void increaseCount(){
+        count++;
+    }
+
+    public void increaseCount1(){
+        count1++;
+    }
+
     public void goodAnswerGenerat(){
-        rightAnswers.setText(String.valueOf(gameLogic.getCount()));
+        rightAnswers.setText(String.valueOf(count));
         goodCircle.setVisible(true);
         plusBall.setVisible(true);
         javax.swing.Timer timer = new javax.swing.Timer(1000/*Time in millis*/,e->
@@ -68,7 +83,7 @@ public class Controller {
         timer.start();
     }
     public void badAnswerGenerat(){
-        falseAnswers.setText(String.valueOf(gameLogic.getCount1()));
+        falseAnswers.setText(String.valueOf(count1));
         badCircle.setVisible(true);
         minusBall.setVisible(true);
         javax.swing.Timer timer = new javax.swing.Timer(1000/*Time in millis*/,e->
@@ -84,10 +99,10 @@ public class Controller {
     }
     public void handleLogic(){
         gameLogic.setConvertINt(gameLogic.getConvertINt1());
-        number1.setText(String.valueOf(gameLogic.getConvertINt()));
-        gameLogic.randomC();
+        number1.setText(gameLogic.getConvert());
+        gameLogic.setConvert(Integer.toBinaryString(gameLogic.randomer()));
         gameLogic.setConvertINt1(Integer.parseInt(gameLogic.getConvert()));
-        number2.setText(String.valueOf(gameLogic.getConvertINt1()));
+        number2.setText(gameLogic.getConvert());
         number2.setEffect(new GaussianBlur(500));
         number1.setEffect(new GaussianBlur(500));
         javax.swing.Timer timer1 = new javax.swing.Timer(1000/*Time in millis*/,e->
@@ -102,37 +117,37 @@ public class Controller {
         timer1.start();
     }
     public void hanleGenerat(){
-        if(gameLogic.getCount() == 10 ){
-            gameLogic.setChainNum(1);
+        if(count == 10 ){
+            chainNum = 1;
             countGenerat();
-            chain.process(gameLogic.getChainNum());
+            chain.process(chainNum);
         }
-        if(gameLogic.getCount1() == 6 ){
-            gameLogic.setChainNum(3);
+        if(count1 == 6 ){
+            chainNum = 3;
             countGenerat();
-            chain.process(gameLogic.getChainNum());
+            chain.process(chainNum);
         }
     }
     public void handle(KeyEvent event){
         if(event.getCode() == KeyCode.W){
-            if(gameLogic.eventAction() == true){
-                gameLogic.increaseCount();
+            if(gameLogic.check()){
+                increaseCount();
                 goodAnswerGenerat();
             }
             else {
-                gameLogic.increaseCount1();
+                increaseCount1();
                 badAnswerGenerat();
             }
             handleLogic();
             hanleGenerat();
         }
         if(event.getCode() == KeyCode.S){
-            if(gameLogic.eventAction() == false) {
-                gameLogic.increaseCount();
+            if(!gameLogic.check()) {
+                increaseCount();
                 goodAnswerGenerat();
             }
             else {
-                gameLogic.increaseCount1();
+                increaseCount1();
                 badAnswerGenerat();
             }
             handleLogic();
