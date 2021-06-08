@@ -8,7 +8,6 @@ import java.util.Optional;
 
 import static sample.Controller.SUCCESS;
 
-
 public class PositiveHandler extends Handler{
     public PositiveHandler(Handler processor) {
         super(processor);
